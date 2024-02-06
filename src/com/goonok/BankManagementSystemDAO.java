@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class BankManagementSystemDAO {
-    private static final String url = "jdbc:mysql://localhost:3306/testdb";
+    private static final String url = "jdbc:mysql://localhost:3306/bank_ms";
     private static final String dbUser = "root";
     private static final String pass = "252646";
     private Connection connection;
@@ -49,17 +49,44 @@ public class BankManagementSystemDAO {
                System.out.println();
                System.out.println("1. Open a new Bank Account");
                System.out.println("2. Exit");
-               try{
-                   if (scanner.nextInt() == 1){
-                       acountNumber = accounts.openAccount(email);
-                       System.out.println("Account Created...");
-                       System.out.println("Your account Number is: " + acountNumber);
-                   }else {
-                       System.out.println("Entered");
+               if (scanner.nextInt() == 1){
+                   acountNumber = accounts.openAccount(email);
+                   System.out.println("Account Created...");
+                   System.out.println("Your account Number is: " + acountNumber);
+               }else {
+                   break;
+               }
+           }
+
+           acountNumber = accounts.getAccountNumber(email);
+           int choice = 0;
+           while (choice!=5){
+               System.out.println();
+               System.out.println("1. Withdraw Money");
+               System.out.println("2. Deposit Money");
+               System.out.println("3. Transfer Money");
+               System.out.println("4. Check Balance");
+               System.out.println("5. Logout");
+               System.out.print("Enter your choice: ");
+               choice = scanner.nextInt();
+               switch (choice){
+                   case 1:
+                       accountManager.debitMoney(acountNumber);
                        break;
-                   }
-               }catch (RuntimeException r){
-                   throw new RuntimeException();
+                   case 2:
+                       accountManager.creditMoney(acountNumber);
+                       break;
+                   case 3:
+                       accountManager.transferMoney(acountNumber);
+                       break;
+                   case 4:
+                       accountManager.getBalance(acountNumber);
+                       break;
+                   case 5:
+                       return;
+                   default:
+                       System.out.println("Enter valid choice!");
+                       break;
                }
            }
        }

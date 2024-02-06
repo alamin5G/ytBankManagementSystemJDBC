@@ -1,6 +1,5 @@
 package com.goonok;
 
-import javax.security.auth.login.CredentialNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,9 +45,6 @@ public class User {
         }
 
     }
-
-   ////TODO - https://www.youtube.com/watch?v=p_-GZTStkoI&list=PL9q3G4cgja6cgxDbpg3cdvnqM9iWwQtNG&index=14
-    /// TIME - 14:01
 
     public String login() {
 

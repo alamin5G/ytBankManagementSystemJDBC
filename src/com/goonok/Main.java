@@ -25,6 +25,14 @@ public class Main {
                     break;
                 case 2:
                     systemDAO.login();
+
+                    break;
+                case 3:
+                    System.out.println("Thank you for using banking system..");
+                    System.out.println("Exiting System");
+                    return;
+                default:
+                    System.out.println("Enter correct choice!!");
                     break;
 
             }
